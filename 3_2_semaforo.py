@@ -1,3 +1,7 @@
+#=================================================
+# Función para iniciar el contador del semáforo ==
+#=================================================
+
 def iniciar_contador_semaforo(segundos_totales):
 
     segundo_actual = segundos_totales
@@ -26,9 +30,9 @@ def iniciar_contador_semaforo(segundos_totales):
     print("Se agotó el tiempo")
     return "rojo"
 
-#==============================
-# Programa principal
-#==============================
+#=======================
+# Programa principal  ==
+#=======================
 
 # 1. Llamamos a la función de contador pasando 20 segundos
 estado_semaforo = iniciar_contador_semaforo(20)
