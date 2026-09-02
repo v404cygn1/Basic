@@ -96,3 +96,13 @@ Para iniciar la aplicación, ejecutar en la terminal:
 python main.py
 
 Nota: La primera vez que se corra va a abrir una pestaña en el navegador pidiendo autorización. Una vez aceptados los permisos, se genera el archivo token.json y las siguientes veces entra directo sin volver a pedir acceso.
+
+---
+
+## Autor
+
+Juan Zapata Vélez - ADSO
+
++57 3045530299
+
+jzvelez1997@gmail.com
