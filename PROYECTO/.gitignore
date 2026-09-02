@@ -1,7 +1,7 @@
 # Entorno virtual y temporales
 __pycache__/
 .venv/
-env/
+.env
 venv/
 
 # Credenciales y accesos sensibles
