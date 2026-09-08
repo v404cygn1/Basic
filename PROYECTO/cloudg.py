@@ -20,7 +20,7 @@ from google.auth.exceptions import RefreshError
 
 # ... (resto de tus imports)
 
-
+# Función para autenticar y obtener las hojas de Google Sheets
 def autenticar_google():
     creds = None
     if os.path.exists("token.json"):
@@ -54,6 +54,8 @@ def autenticar_google():
 # ==========================================
 # 2. GESTIÓN DE CATEGORÍAS
 # ==========================================
+
+# Función para obtener la lista de categorías desde la hoja de Google Sheets
 def obtener_lista_categorias(hoja_cat):
     """Devuelve la lista de categorías ignorando el encabezado."""
     valores = hoja_cat.col_values(1)
@@ -61,7 +63,7 @@ def obtener_lista_categorias(hoja_cat):
         return valores[1:]  # Ignora la celda A1 ('Nombre')
     return []
 
-
+# Función para mostrar el menú de selección de categorías y permitir la gestión
 def seleccionar_o_administrar_categoria(hoja_cat):
     """Muestra el menú numerado de categorías y permite elegir o gestionar."""
     while True:
@@ -89,7 +91,7 @@ def seleccionar_o_administrar_categoria(hoja_cat):
         else:
             print("Por favor, ingresa un número válido.")
 
-
+# Función para mostrar el submenú de administración de categorías
 def menu_administrar_categorias(hoja_cat):
     """Submenú a/b/c para gestionar categorías."""
     while True:
@@ -152,6 +154,8 @@ def menu_administrar_categorias(hoja_cat):
 # ==========================================
 # 3. GESTIÓN DE GASTOS (CRUD)
 # ==========================================
+
+# Función para registrar un nuevo gasto
 def registrar_gasto(hoja_gastos, hoja_cat):
     print("\n--- REGISTRAR NUEVO GASTO ---")
     fecha = datetime.now().strftime("%Y-%m-%d")
@@ -175,7 +179,11 @@ def registrar_gasto(hoja_gastos, hoja_cat):
     hoja_gastos.append_row(nueva_fila)
     print(f" Gasto de ${monto:,.2f} registrado en '{categoria}'.\n")
 
+# ==========================================
+# 4. LISTAR, MODIFICAR Y ELIMINAR GASTOS    
+# ==========================================
 
+# Función para listar todos los gastos y mostrar el total
 def listar_gastos(hoja_gastos):
     print("\n--- HISTORIAL DE GASTOS ---")
     registros = hoja_gastos.get_all_records()
@@ -195,7 +203,7 @@ def listar_gastos(hoja_gastos):
     print(f"\n TOTAL GASTADO: ${total:,.2f}\n")
     return registros
 
-
+# Función para modificar un gasto existente
 def modificar_gasto(hoja_gastos, hoja_cat):
     registros = listar_gastos(hoja_gastos)
     if not registros:
@@ -246,7 +254,7 @@ def modificar_gasto(hoja_gastos, hoja_cat):
 
     print(" Gasto actualizado correctamente.\n")
 
-
+# Función para eliminar un gasto existente
 def eliminar_gasto(hoja_gastos):
     registros = listar_gastos(hoja_gastos)
     if not registros:
@@ -273,6 +281,8 @@ def eliminar_gasto(hoja_gastos):
 # ==========================================
 # 4. BUCLE PRINCIPAL
 # ==========================================
+
+# Función principal para iniciar la aplicación
 def iniciar_aplicacion():
     print("Conectando con Google Sheets...")
     hoja_gastos, hoja_categorias = autenticar_google()
